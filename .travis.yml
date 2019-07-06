@@ -10,3 +10,16 @@ before_install:
 
 scripts:
   - docker run karimhadja/react-app npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "react-docker-travis-aws"
+  env: "env-1"
+  bucket_name: "elasticbeanstalk-eu-north-1-794348165880"
+  bucket_path: "react-docker-travis-aws"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
